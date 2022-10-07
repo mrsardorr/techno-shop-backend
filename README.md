@@ -1,2 +1,2 @@
-# techno-shop-backend
-homework
+# techno-shop
+techno shop. Practise restFull api
