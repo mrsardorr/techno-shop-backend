@@ -6,9 +6,8 @@ router.get('/', constructor.getProducts)
 
 router.post('/add', constructor.setProducts)
 
-router.delete('/:id', constructor.deleteProduct)
+router.get('/userById', constructor.getProductById)
 
-router.put('/:id', constructor.updateProduct)
-
+router.get('/deleteById', constructor.deleteById)
 
 module.exports = router

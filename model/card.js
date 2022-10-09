@@ -44,27 +44,7 @@ module.exports = class Card{
         })
     }
 
-    static async remove(id){
-        const card = await this.get()
-        const idx = card.products.findIndex(product => product.id === id)
+    remove(){
         
-        if(idx < 0){
-            console.log('there are not product with id: ' + idx)
-        }else{
-            card.total = +card.total - parseInt(card.products[idx].price)
-            card.products.splice(idx,1)
-        }
-
-        return new Promise((resolve, reject)=>{
-            fs.writeFile(path.join(__dirname, '..','data', 'card.json'), 
-            JSON.stringify(card),
-            (err)=>{
-                if(err){
-                    reject(err);
-                }
-
-                resolve()
-            })
-        })
     }
 }

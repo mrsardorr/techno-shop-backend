@@ -13,7 +13,8 @@ module.exports.buy = async function (req, res) {
 }
 
 module.exports.remove = async function (req, res) {
-    const productId = +req.body.productId
-    await Card.buy(productId)
-    res.status(200).send('Removed successfull')
+    const products = req.body
+    await Product.save(products)
+
+    res.status(201).send('Successfull')
 }

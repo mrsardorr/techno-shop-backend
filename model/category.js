@@ -35,27 +35,8 @@ module.exports = class Category{
         })
     }
 
-    static async deleteById(id){
-        const categor = await this.find()
-        const idx = categor.findIndex(product => product.id === id)
-        
-        if(idx < 0){
-            console.log('there are not category with id: ' + idx)
-        }else{
-            categor.splice(idx,1)
-        }
+    deleteById(id){
 
-        return new Promise((resolve, reject)=>{
-            fs.writeFile(path.join(__dirname, '..','data', 'card.json'), 
-            JSON.stringify(categor),
-            (err)=>{
-                if(err){
-                    reject(err);
-                }
-
-                resolve()
-            })
-        })
     }
 
     static async findById(id){
@@ -68,28 +49,7 @@ module.exports = class Category{
         return {category: category.type, products: categoryProducts}
     }
 
-    
-    static async updateById(id,namee){
-        const categor = await this.find()
-        const idx = categor.findIndex(product => product.id === id)
-        
-        if(idx < 0){
-            console.log('there are not category with id: ' + idx)
-        }else{
-            categor[idx].type = namee
-        }
+    updateById(id){
 
-        return new Promise((resolve, reject)=>{
-            fs.writeFile(path.join(__dirname, '..','data', 'card.json'), 
-            JSON.stringify(categor),
-            (err)=>{
-                if(err){
-                    reject(err);
-                }
-
-                resolve()
-            })
-        })
     }
-
 }

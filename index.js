@@ -1,7 +1,19 @@
 const express = require('express')
 const app = express()
+const mongoose = require('mongoose')
+
+const uri = 'mongodb+srv://mrsardor:F9nlgGXG9jKbiLEW@cluster0.er5dhmi.mongodb.net/technoshop'
+
 
 const port = normalizePort(process.env.PORT || 3001)
+
+async function dbConnection(){
+    await mongoose.connect(uri, ()=>{
+        console.log('MongoDB connected');
+    })
+}
+
+dbConnection()
 
 // Import routes 
 const productRouter = require('./routes/product')

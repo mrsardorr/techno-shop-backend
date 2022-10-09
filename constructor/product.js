@@ -5,27 +5,25 @@ module.exports.getProducts = async function (req, res) {
     res.status(200).send(products)
 }
 
+module.exports.getProductById = async function (req, res) {
+    const product = await Product.findById('63417e3af04588c24c11dde3')
+    res.send(product)
+}
+
+module.exports.deleteById = async function (req, res) {
+    await Product.findByIdAndRemove('634299e7d9098edb9328ca8b')
+    res.send('Deleted')
+}
+
 module.exports.setProducts = async function (req, res) {
-    const products = req.body
-    await Product.save(products)
+    // const products = req.body
+    const product = new Product({
+        name: req.body.name,
+        price: +req.body.price,
+        categoryId: req.body.categoryId
+    })
 
-    res.status(201).send('Successfull')
-}
+    await product.save()
 
-module.exports.deleteProduct = async function (req, res) {
-    const id = req.param.id
-
-    await Product.deleteById(id)
-
-    res.status(201).send('Successfull')
-}
-
-module.exports.updateProduct = async function (req, res) {
-    const id = req.param.id
-    const namee = req.body.name
-    const pricee = req.body.price
-
-    await Product.updateById(id,namee,pricee)
-
-    res.status(201).send('Successfull')
+    res.redirect('/products/')
 }

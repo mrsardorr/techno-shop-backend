@@ -8,8 +8,4 @@ router.post('/add', constructor.setCategory)
 
 router.get('/:id', constructor.categoryFindById)
 
-router.delete('/:id',constructor.categoryDeleteById)
-
-router.put('/:id',constructor.categoryUpdateById)
-
 module.exports = router
